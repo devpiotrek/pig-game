@@ -19,7 +19,7 @@ console.log(dice);
 
 document.querySelector('#current-' + activePlayer).textContent = dice;
 
-
+document.querySelector('.dice').style.display = 'none';
 
 
 
