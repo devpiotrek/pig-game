@@ -21,6 +21,8 @@ document.querySelector('#current-' + activePlayer).textContent = dice;
 
 document.querySelector('.dice').style.display = 'none';
 
+naprawa błedów
+
 
 
 
