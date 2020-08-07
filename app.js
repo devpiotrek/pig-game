@@ -24,6 +24,8 @@ document.querySelector('.dice').style.display = 'none';
 
 
 
+zmiana master 2
+
 
 
 
