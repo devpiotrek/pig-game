@@ -14,19 +14,58 @@ scores = [0,0];
 roundScore = 0;
 activePlayer = 0;
 
-dice = Math.floor(Math.random() * 6) +1;
-console.log(dice);
 
-document.querySelector('#current-' + activePlayer).textContent = dice;
+// document.querySelector('#current-' + activePlayer).textContent = dice;
+// var x = document.querySelector('#score-0').textContent;
 
 document.querySelector('.dice').style.display = 'none';
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+
+function reset() {
+	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+	roundScore = 0;
+	document.querySelector('.player-0-panel').classList.toggle('active');
+	document.querySelector('.player-1-panel').classList.toggle('active');
+	document.getElementById('current-0').textContent = 0;
+	document.getElementById('current-1').textContent = 0;
+	document.querySelector('.dice').style.display = 'none';
+}
 
 
+document.querySelector('.btn-roll').addEventListener('click', function() {
+	// 1. Random number
+	var dice = Math.floor(Math.random() * 6) + 1;
+
+	// 2. Display the result
+	var diceDOM = document.querySelector('.dice');	
+	diceDOM.style.display = 'block';
+	diceDOM.src = 'dice-' + dice + '.png'
+
+	// 3. Update the round score IF the rolled number was NOT a 1
+	if (dice !== 1) {
+		//Add score
+		roundScore += dice;
+		document.querySelector('#current-' + activePlayer).textContent = roundScore;
+	} else {
+		//Nextplayer
+		reset();
+	}
+});
 
 
-
-
-
-
+document.querySelector('.btn-hold').addEventListener('click', function() {
+	//1. Adding roundScore to score
+	scores[activePlayer] += roundScore;
+	document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
+	//2. Changing the player
+	if (scores[activePlayer] >= 20) {
+		document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+	} else {
+		reset();
+	}
+})
 
 
