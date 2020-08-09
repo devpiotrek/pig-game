@@ -63,6 +63,8 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 	//2. Changing the player
 	if (scores[activePlayer] >= 20) {
 		document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+		document.querySelector('player-' + activePlayer + '-panel').classList.add('.winner');
+		document.querySelector('.dice').style.display = 'none';
 	} else {
 		reset();
 	}
