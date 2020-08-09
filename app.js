@@ -23,7 +23,14 @@ document.getElementById('score-0').textContent = '0';
 document.getElementById('score-1').textContent = '0';
 document.getElementById('current-0').textContent = '0';
 document.getElementById('current-1').textContent = '0';
-
+function reset () {
+	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+	document.querySelector('.player-0-panel').classList.toggle('active');
+	document.querySelector('.player-1-panel').classList.toggle('active');
+	document.getElementById('current-0').textContent = 0;
+	document.getElementById('current-1').textContent = 0;
+	document.querySelector('.dice').style.display = 'none';
+}
 
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
@@ -42,17 +49,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 		document.querySelector('#current-' + activePlayer).textContent = roundScore;
 	} else {
 		//Nextplayer
-		activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-		roundScore = 0;
-
-		document.getElementById('current-0').textContent = 0;
-		document.getElementById('current-1').textContent = 0;
-
-		document.querySelector('.player-0-panel').classList.toggle('active');
-		document.querySelector('.player-1-panel').classList.toggle('active');
-		//document.querySelector('.player-0-panel').classList.remove('active');
-		//document.querySelector('.player-1-panel').classList.add('active');
-		document.querySelector('.dice').style.display = 'none';
+		reset();
 	}
 });
 
@@ -62,13 +59,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 	var global = scores[activePlayer] += roundScore;
 	document.getElementById('score-' + activePlayer).textContent = global;
 	//2. Changing the player
-	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-	document.querySelector('.player-0-panel').classList.toggle('active');
-	document.querySelector('.player-1-panel').classList.toggle('active');
-	document.getElementById('current-0').textContent = 0;
-	document.getElementById('current-1').textContent = 0;
-	document.querySelector('.dice').style.display = 'none';
+	reset();
 })
-
 
 
