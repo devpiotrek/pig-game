@@ -84,3 +84,10 @@ function init() {
 	document.getElementById('current-1').textContent = '0';
 } 
 
+// At this point everything works besides:
+
+// - the global score is not reseting
+// - buttons are avaliable after finishing the game
+
+
+
