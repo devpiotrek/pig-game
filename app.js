@@ -23,8 +23,10 @@ document.getElementById('score-0').textContent = '0';
 document.getElementById('score-1').textContent = '0';
 document.getElementById('current-0').textContent = '0';
 document.getElementById('current-1').textContent = '0';
-function reset () {
+
+function reset() {
 	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+	roundScore = 0;
 	document.querySelector('.player-0-panel').classList.toggle('active');
 	document.querySelector('.player-1-panel').classList.toggle('active');
 	document.getElementById('current-0').textContent = 0;
@@ -56,10 +58,14 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
 	//1. Adding roundScore to score
-	var global = scores[activePlayer] += roundScore;
-	document.getElementById('score-' + activePlayer).textContent = global;
+	scores[activePlayer] += roundScore;
+	document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
 	//2. Changing the player
-	reset();
+	if (scores[activePlayer] >= 20) {
+		document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+	} else {
+		reset();
+	}
 })
 
 
