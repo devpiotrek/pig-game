@@ -10,19 +10,11 @@ GAME RULES:
 */
 var scores, roundScore, activePlayer, dice;
 
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0;
+init();
 
 
 // document.querySelector('#current-' + activePlayer).textContent = dice;
 // var x = document.querySelector('#score-0').textContent;
-
-document.querySelector('.dice').style.display = 'none';
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
 
 function reset() {
 	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
@@ -63,9 +55,39 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 	//2. Changing the player
 	if (scores[activePlayer] >= 20) {
 		document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+		document.querySelector('player-' + activePlayer + '-panel').classList.add('.winner');
+		document.querySelector('.dice').style.display = 'none';
 	} else {
 		reset();
 	}
 })
+
+document.querySelector('.btn-new').addEventListener('click', function() {
+	document.querySelector('#name-0').textContent = 'Player 1';
+	document.querySelector('#name-1').textContent = 'Player 2';
+	document.querySelector('player-' + activePlayer + '-panel').classList.remove('.winner');
+	document.getElementById('score-0').textContent = '0';
+	document.getElementById('score-1').textContent = '0';
+	reset();
+	
+})
+
+function init() {
+	scores = [0,0];
+	roundScore = 0;
+	activePlayer = 0;
+
+	document.querySelector('.dice').style.display = 'none';
+	document.getElementById('score-0').textContent = '0';
+	document.getElementById('score-1').textContent = '0';
+	document.getElementById('current-0').textContent = '0';
+	document.getElementById('current-1').textContent = '0';
+} 
+
+// At this point everything works besides:
+
+// - the global score is not reseting
+// - buttons are avaliable after finishing the game
+
 
 
