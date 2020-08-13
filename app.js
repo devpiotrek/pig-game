@@ -9,9 +9,7 @@ GAME RULES:
 
 */
 var scores, roundScore, activePlayer, dice;
-
 init();
-
 
 // document.querySelector('#current-' + activePlayer).textContent = dice;
 // var x = document.querySelector('#score-0').textContent;
@@ -55,8 +53,10 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 	//2. Changing the player
 	if (scores[activePlayer] >= 20) {
 		document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
-		document.querySelector('player-' + activePlayer + '-panel').classList.add('.winner');
+		document.querySelector('.player-' + activePlayer + '-panel').classList.add('.winner');
 		document.querySelector('.dice').style.display = 'none';
+		document.querySelector('.btn-hold').style.display = 'none';
+		document.querySelector('.btn-roll').style.display = 'none';
 	} else {
 		reset();
 	}
@@ -65,10 +65,10 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 document.querySelector('.btn-new').addEventListener('click', function() {
 	document.querySelector('#name-0').textContent = 'Player 1';
 	document.querySelector('#name-1').textContent = 'Player 2';
-	document.querySelector('player-' + activePlayer + '-panel').classList.remove('.winner');
+	document.querySelector('.player-' + activePlayer + '-panel').classList.remove('.winner');
 	document.getElementById('score-0').textContent = '0';
 	document.getElementById('score-1').textContent = '0';
-	reset();
+	init();
 	
 })
 
@@ -82,11 +82,12 @@ function init() {
 	document.getElementById('score-1').textContent = '0';
 	document.getElementById('current-0').textContent = '0';
 	document.getElementById('current-1').textContent = '0';
+	document.querySelector('.btn-hold').style.display = 'block';
+	document.querySelector('.btn-roll').style.display = 'block';
 } 
 
 // At this point everything works besides:
 
-// - the global score is not reseting
 // - buttons are avaliable after finishing the game
 
 
